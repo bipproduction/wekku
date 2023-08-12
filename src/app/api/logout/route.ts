@@ -7,7 +7,7 @@ import { NextResponse } from 'next/server'
 export function GET() {
 
     cookies().set({
-        name: 'session',
+        name: 'token',
         value: '',
         maxAge: 0,
         // expires: new Date(Date.now() + 60 * 60 * 24 * 7),

@@ -18,8 +18,8 @@ export default function RootStyleRegistry({ children }: { children: React.ReactN
   ));
 
   return (
-    <html lang='en'>
-      <body suppressHydrationWarning={true}>
+    <html lang='en' data-theme="light" >
+      <body suppressHydrationWarning={true} >
         <CacheProvider value={cache}>
           <MantineProvider withGlobalStyles withNormalizeCSS>
             {children}

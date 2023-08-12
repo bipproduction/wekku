@@ -1,8 +1,13 @@
+import { ViewLoadUser } from '@/lib/load_user';
 import RootStyleRegistry from './emotion';
 
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <RootStyleRegistry>{children}</RootStyleRegistry>
+    <RootStyleRegistry>
+      <div>
+        {children}
+      </div>
+    </RootStyleRegistry>
   );
 }

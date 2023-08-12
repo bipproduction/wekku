@@ -1,7 +1,7 @@
-import { LoginView } from '@/modules/auth/login';
-import { LogoutButton } from "./logout";
-import { CustomerView } from './customer';
+import { ViewProduct } from './src/product/view/product';
+import { CustomerView } from './src/customer';
+import { CodeValidate } from './src/login';
 
-export { LogoutButton }
-export { LoginView }
 export { CustomerView }
+export { CodeValidate }
+export { ViewProduct }

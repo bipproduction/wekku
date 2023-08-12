@@ -11,12 +11,16 @@ datasource db {
 }
 
 model User {
-  id       String     @id @default(cuid())
-  name     String
-  email    String     @unique
-  password String
-  phone    String     @unique
-  UserAuth UserAuth[]
+  id           String        @id @default(cuid())
+  name         String?
+  phone        String?       @unique
+  UserAuth     UserAuth[]
+  UserMerchant UserMerchant?
+  isActive     Boolean?      @default(true)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  Product      Product[]
+  Category     Category[]
 }
 
 model UserAuth {
@@ -26,4 +30,50 @@ model UserAuth {
   expiresAt DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model UserMerchant {
+  User         User?    @relation(fields: [userId], references: [id])
+  userId       String   @id
+  address      String?
+  businessName String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Otp {
+  id        String   @id @default(cuid())
+  menit     Int
+  code      String
+  phone     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Product {
+  id         String    @id @default(cuid())
+  img        String?    @db.Text
+  name       String
+  des        String?   @db.Text
+  price      Int
+  stock      Int
+  isActive   Boolean   @default(true)
+  User       User?     @relation(fields: [userId], references: [id])
+  userId     String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Category   Category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+}
+
+model Category {
+  id        String    @id @default(cuid())
+  name      String
+  isActive  Boolean   @default(true)
+  User      User?     @relation(fields: [userId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  userId    String?
+  Product   Product[]
 }
