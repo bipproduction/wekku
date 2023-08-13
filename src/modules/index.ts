@@ -1,7 +1,10 @@
-import { ViewProduct } from './src/product/view/product';
-import { CustomerView } from './src/customer';
+import { ViewProduct } from './src/dashboard/product/view/product';
 import { CodeValidate } from './src/login';
-
-export { CustomerView }
+import ViewDashboard from './src/dashboard/view/dashboard';
+import ViewStore from './src/store/view/store';
+import { valStoreId } from './src/store/val/val_store_id';
 export { CodeValidate }
 export { ViewProduct }
+export { ViewDashboard }
+export { ViewStore }
+export { valStoreId }

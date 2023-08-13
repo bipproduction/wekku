@@ -1,26 +1,44 @@
 
-import { checkHasLoggedIn } from "@/lib/check_auth"
+import { checkHasLoggedIn } from "@/lib/fun/check_auth"
 import { prisma } from "@/lib/db"
-import { CustomerView } from "@/modules"
 import { LogoutButton } from "@/modules/src/logout"
 import { cookies } from 'next/headers'
 import { redirect } from "next/navigation"
+import { Title } from "@mantine/core"
+import { ViewStore } from "@/modules"
+import _ from "lodash"
 
 
 export default async function Page({ params }: { params: { id: string } }) {
 
-    const user = await prisma.user.findMany()
+    const user: any = await prisma.user.findUnique({
+        where: {
+            phone: params.id
+        },
+        select: {
+            id: true,
+            phone: true,
+            name: true,
+            UserMerchant: {
+                select: {
+                    address: true,
+                    businessName: true,
+                }
+            }
+        }
+    })
 
-    if (!(await checkHasLoggedIn())) return redirect('/auth/login')
+    try {
+        user.address = user?.UserMerchant?.address
+        user.businessName = user?.UserMerchant?.businessName
+    } catch (error) {
+        console.log(error)
+    }
+
+    if (!user) return <>user belum ditemukan</>
 
     return (<div>
-        {params.id}
-        <pre>
-            {JSON.stringify(cookies().getAll(), null, 2)}
-        </pre>
 
-        <LogoutButton />
-        <CustomerView />
-
+        <ViewStore store={user} />
     </div>)
 }

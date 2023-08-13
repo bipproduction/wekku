@@ -1,5 +1,5 @@
 
-import { checkHasLoggedIn } from '@/lib/check_auth';
+import { checkHasLoggedIn } from '@/lib/fun/check_auth';
 import { cookies } from 'next/headers';
 
 export default async function Page() {

@@ -1,8 +1,6 @@
 import { ViewProduct } from "@/modules"
 
-
-export default async function Page({ params }: { params: { phone: string } }) {
-
+export default async function Page() {
 
     return (
         <div >

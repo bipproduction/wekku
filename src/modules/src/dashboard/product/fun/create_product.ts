@@ -1,9 +1,9 @@
 'use server'
 import { prisma } from "@/lib/db"
-import funGetUser from '@/lib/get_user'
+import funGetUser from '@/lib/fun/get_user'
 
 export default async function funCreateProduct(data: any) {
-
+   
     const user = await funGetUser()
     await prisma.product.create({
         data: {

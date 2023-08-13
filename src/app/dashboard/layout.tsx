@@ -1,14 +1,16 @@
-import funGetUser from "@/lib/get_user"
-import { ViewLoadUser } from "@/lib/load_user"
+import funGetUser from "@/lib/fun/get_user"
+import { ViewLoadUser } from "@/lib/view/load_user"
+import { ViewDashboard } from "@/modules"
 
 
 export default async function LayoutDashboard({ children }: { children: any }) {
     // memastikan user telah login, jika belum maka akan dilempar ke login
-    const user = await funGetUser()
+    await funGetUser()
 
     return <>
-
         <ViewLoadUser />
-        {children}
+        <ViewDashboard >
+            {children}
+        </ViewDashboard>
     </>
 }

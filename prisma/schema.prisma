@@ -21,6 +21,7 @@ model User {
   updatedAt    DateTime      @updatedAt
   Product      Product[]
   Category     Category[]
+  Galery       Galery[]
 }
 
 model UserAuth {
@@ -53,7 +54,7 @@ model Otp {
 
 model Product {
   id         String    @id @default(cuid())
-  img        String?    @db.Text
+  img        String?   @db.Text
   name       String
   des        String?   @db.Text
   price      Int
@@ -76,4 +77,16 @@ model Category {
   updatedAt DateTime  @updatedAt
   userId    String?
   Product   Product[]
+}
+
+model Galery {
+  id        String   @id @default(cuid())
+  name      String
+  ext       String
+  imgId     String
+  isActive  Boolean  @default(true)
+  User      User?    @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    String?
 }
