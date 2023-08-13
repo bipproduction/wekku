@@ -59,7 +59,7 @@ export default function CodeValidate({ phone }: { phone: string }) {
 
                         toast("success")
                         interval.stop()
-                        if (apa.status === "login") return router.replace(`/dashboard/${phone}`)
+                        if (apa.status === "login") return router.replace(`/dashboard`)
                         if (apa.status === "register") return router.replace(`/register/${phone}`)
 
                     }

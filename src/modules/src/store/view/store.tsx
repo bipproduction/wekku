@@ -1,9 +1,7 @@
 'use client'
-import { useShallowEffect } from "@mantine/hooks";
-import { valStoreId } from "../val/val_store_id";
-import { ViewListProductStore } from "./list_product_store";
-import { Box, Center, Flex, Group, Paper, Stack, Text, TextInput } from "@mantine/core";
+import { Center, Flex, Group, Paper, Stack, Text, TextInput } from "@mantine/core";
 import { MdSearch, MdWhatsapp } from "react-icons/md";
+import { ViewListProductStore } from "./list_product_store";
 
 export default function ViewStore({ store }: { store: any }) {
 
